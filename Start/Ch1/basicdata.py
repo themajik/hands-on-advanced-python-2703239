@@ -9,10 +9,14 @@ with open("../../sample-weather-history.json", "r") as weatherfile:
     weatherdata = json.load(weatherfile)
 
 # TODO: What was the warmest day in the data set?
-
+warmday = max(weatherdata, key = lambda x:x["tmax"])
+print(f'The warmest day is on', warmday["date"])
 
 # TODO: What was the coldest day in the data set?
-
+warmday = min(weatherdata, key = lambda x:x["tmin"])
+print(f'The coldest day is on', warmday["date"])
 
 # TODO: How many days had snowfall?
-
+snowdays =  [day for day in weatherdata if day["snow"] > 0]
+print(f"Snow fell on {len(snowdays)} days")
+pprint.pp(snowdays)

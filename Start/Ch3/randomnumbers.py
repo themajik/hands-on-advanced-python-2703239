@@ -8,13 +8,18 @@ import random
 with open("../../sample-weather-history.json", "r") as weatherfile:
     weatherdata = json.load(weatherfile)
 
-# TODO: the random module can be used to generate random values
+for d in weatherdata:
+    d['awnd'] = 0 if d['awnd'] is None else d['awnd']
 
+
+# TODO: the random module can be used to generate random values
+print(random.random())
 
 # TODO: choose a random number in a range including both points
+print(random.randint(10,20))
 
 # TODO: choose a random number in a range excluding end point
-
+print(random.randrange(10,20))
 
 # build a list of the summer days in 2019
 def is_summer_day(d):
@@ -25,6 +30,13 @@ def is_summer_day(d):
 summer_2019 = list(filter(is_summer_day, weatherdata))
 
 # TODO: choose 5 random days from that summer
+rand_summer_days = []
+for _ in range(5):
+    rand_summer_days.append(summer_2019[random.randint(1,len(summer_2019))])
 
+# pprint.pp(rand_summer_days)
+# print(len(rand_summer_days))
 
 # TODO: what was the windiest of those 5 days?
+windiest_day = max(rand_summer_days, key = lambda x:x['awnd'])
+pprint.pp(windiest_day)
